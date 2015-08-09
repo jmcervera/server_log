@@ -61,10 +61,20 @@ RSpec.describe Parser do
 	end
 
 	describe "#print_stats" do
-		it "prints the pages visited" do
-			parser = Parser.new("webserver.log", LineParser.new)
+		let(:parser) { Parser.new("webserver.log", LineParser.new)}
+
+		before do
 			parser.parse
-			expect(parser.print_stats).to eq(parser.pages_visited.to_s)
+		end
+
+		it "prints the pages view stats" do
+			printer = double("page view stats", print: "Page views")
+			expect(parser.print_stats(printer)).to eq("Page views")
+		end
+
+		it "prints the unique pages view stats" do
+			printer = double("unique page view stats", print: "Unique page views")
+			expect(parser.print_stats(printer)).to eq("Unique page views")
 		end
 	end
 

@@ -29,8 +29,8 @@ class Parser
 		end
 	end
 
-	def print_stats
-		@pages_visited.to_s
+	def print_stats(printer)
+		printer.print(@pages_visited)
 	end
 
 	private
@@ -41,3 +41,4 @@ class Parser
 		@pages_visited[visit.page].add_visit(visit.ip_address)
 	end
 end
+
