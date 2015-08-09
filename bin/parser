@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '/../'))
+require 'lib/parser'
+require 'lib/line_parser'
+require 'lib/page_view_stats'
+require 'lib/unique_page_view_stats'
+
+parser = Parser.new(*ARGV, LineParser.new)
+parser.parse
+parser.print_stats(PageViewStats.new)
+parser.print_stats(UniquePageViewStats.new)
