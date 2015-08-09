@@ -29,6 +29,10 @@ class Parser
 		end
 	end
 
+	def print_stats
+		@pages_visited.to_s
+	end
+
 	private
 	def register_visit(visit)
 		unless @pages_visited.has_key?(visit.page)

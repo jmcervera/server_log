@@ -1,5 +1,6 @@
 require 'spec_helper'
 require "parser"
+require "line_parser"
 
 RSpec.describe Parser do
 	let(:visit) { double("visit", page: '/about', ip_address: "127.0.0.0")}
@@ -56,6 +57,14 @@ RSpec.describe Parser do
 				expect(pv['/about'].views).to eq(2)
 				expect(pv['/about'].addresses).to eq ['127.0.0.0']
 			end
+		end
+	end
+
+	describe "#print_stats" do
+		it "prints the pages visited" do
+			parser = Parser.new("webserver.log", LineParser.new)
+			parser.parse
+			expect(parser.print_stats).to eq(parser.pages_visited.to_s)
 		end
 	end
 
